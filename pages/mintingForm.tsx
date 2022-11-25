@@ -30,13 +30,20 @@ export default function MintingForm() {
     };
 
     const handleChangeStudentAddress = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setStudentAddress(event.target.value);
+        setStudentAddress(event.target.value); 
     };
+
     const isFormValid = () => {
-        return (Number(courseId) >= 0 && Number(courseId) >= 3 
-        && studentName.length > 0) 
-        && tokenURI.length > 0 ? true : false 
-    };
+    if (
+      (Number(courseId) >= 0 && Number(courseId) <=3) &&
+      studentName.length > 0 &&
+      tokenURI.length > 0
+    ) {
+      return true;
+    }
+
+    return false;
+  };
 
   const {config} = usePrepareContractWrite({
     address: contractAddress,
