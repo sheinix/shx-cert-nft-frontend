@@ -21,13 +21,19 @@ export default function MintingForm() {
         setCourseId(event.target.value);
     };
 
-     const handleChangeStudentName = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeStudentName = (event: React.ChangeEvent<HTMLInputElement>) => {
         setStudentName(event.target.value);
     };
 
-  
+    const handleChangeTokenURI = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setTokenURI(event.target.value);
+    };
+
+    const handleChangeStudentAddress = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setStudentAddress(event.target.value);
+    };
     const isFormValid = () => {
-        return (Number(courseId) > 0 && Number(courseId) >= 3 
+        return (Number(courseId) >= 0 && Number(courseId) >= 3 
         && studentName.length > 0) 
         && tokenURI.length > 0 ? true : false 
     };
@@ -73,110 +79,63 @@ export default function MintingForm() {
       noValidate
       autoComplete="off">
       <Typography variant="h3" color="primary">
-        Setup your own event
+        Mint Academy Cert NFT
       </Typography>
+      
       <div>
         <TextField
-          id="prize-amount"
-          label="Prize Amount"
+          id="courseId"
+          label="Course Id"
           variant="filled"
-          value={prizeAmount}
-          onChange={handleChange}
+          value={courseId}
+          onChange={handleChangeCourseId}
         />
       </div>
       <div>
         <TextField
           fullWidth
-          id="prize-token-address"
-          label="Prize Token Contract Address"
+          id="studentName"
+          label="Student Name"
           variant="filled"
-          value={prizeTokenAddress}
-          onChange={handleChangeAddress}
+          value={studentName}
+          onChange={handleChangeStudentName}
         />
       </div>
       <div>
         <TextField
-          id="first-winner-percentage"
-          label="First Winner Percentage"
+          id="studentAddress"
+          label="Student Address"
           variant="filled"
-          value={firstWinnerPercentage}
-          onChange={handleChangeFirstWinner}
-        />
-        <TextField
-          id="second-winner-percentage"
-          label="Second Winner percentage"
-          variant="filled"
-          value={secondWinnerPercentage}
-          onChange={handleChangeSecondWinner}
-        />
-        <TextField
-          id="third-winner-ratio"
-          label="Third Winner Percentage"
-          variant="filled"
-          value={thirdWinnerPercentage}
-          onChange={handleChangeThirdWinner}
-        />
+          value={studentAddress}
+          onChange={handleChangeStudentAddress}
+        /> 
       </div>
-
-      {/**Voters section**/}
       <div>
         <div style={{display: 'flex', flexDirection: 'column'}}>
-          <TextField
-            id="voters"
-            label="List of Voters"
-            variant="filled"
-            placeholder="0x..abc, 0x...cde, 0x..."
-            multiline
-            disabled={votersConfirmed}
-            value={stringVoters}
-            onChange={handleChangeVoters}
-          />
+        <TextField
+          id="tokenURI"
+          label="Set Token URI"
+          variant="filled"
+          value={tokenURI}
+          onChange={handleChangeTokenURI}
+        />
         </div>
-        <Button
-          onClick={convertVotersIntoArray}
-          disabled={votersConfirmed || stringVoters.length === 0}>
-          Confirm Voters
-        </Button>
-        <Button onClick={clearVoters}>Clear Voters</Button>
       </div>
-
-      {/**Participants section**/}
-      <div>
-        <div style={{display: 'flex', flexDirection: 'column'}}>
-          <TextField
-            id="participants"
-            label="List of Participants"
-            variant="filled"
-            multiline
-            placeholder="0x..abc, 0x...cde, 0x..."
-            disabled={participantsConfirmed}
-            value={stringParticipants}
-            onChange={handleChangeParticipants}
-          />
-        </div>
-        <Button
-          onClick={convertParticipantsIntoArray}
-          disabled={participantsConfirmed || stringParticipants.length === 0}>
-          Confirm Participants
-        </Button>
-        <Button onClick={clearParticipants}>Clear Participants</Button>
-      </div>
-
       <div style={{marginTop: '1rem'}}>
         <Button variant="outlined" type="submit" disabled={!write || isLoading}>
-          {isLoading ? 'Creating event...' : 'Create Event'}
+          {isLoading ? 'Minting NFT...' : 'Mint NFT'}
         </Button>
       </div>
 
       {isSuccess && (
         <div>
-          Successfully created your event!
+          Successfully Minted!
           <div>
             <Link
               target="_blank"
               rel="noopener noreferrer"
               href={`${chain?.blockExplorers?.etherscan?.url}/tx/${data?.hash}`}>
-              Tx on Etherscan
+              Tx on Polygonscan
             </Link>
           </div>
         </div>

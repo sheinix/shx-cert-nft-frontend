@@ -6,6 +6,7 @@ import { ethers } from 'ethers';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { SHXContractABI } from '../contract/SHXCertificateAbi';
+import MintingForm from './mintingForm';
 
 const Home: NextPage = () => {
   const { address, isConnecting, isDisconnected, isConnected } = useAccount()
@@ -43,17 +44,17 @@ const Home: NextPage = () => {
         <ConnectButton label="Sign In" accountStatus={{smallScreen: 'avatar',largeScreen: 'full',}}/>
       </div>
 
-      <div>{isConnected && `Account ${address} is connected`}</div>
-      <div>{`status: ${status}`}</div>
-      
+      {/* /<div>{isConnected && `Account ${address} is connected`}</div> */}
       <div>{`is Minter: ${isMinter}`}</div>
-     
-      <div>{isConnected && isMinter}
-        <div>
-            <h1> We can start minting now...</h1>
+
+      { isMinter ? (
+        
+        <div className='flex items-center justify-center'>{isConnected && isMinter}
+        <MintingForm />
         </div> 
-      </div>
-     
+      ) : (
+        <div>{`Sorry! Account doesn't have Minter Role: ${isMinter}`}</div> 
+      )}
     </div>
   );
 };
