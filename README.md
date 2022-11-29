@@ -8,7 +8,7 @@ Written with:
 - Hardhat
 
 👉🏻 You can find the contract address in Polygon [here](https://polygonscan.com/address/0x7233b5359da9b578b4c5352a3c4fc49392e03650).  
-👉🏻 You can find the minting site [here](https://master.d2fc7v5desa3e3.amplifyapp.com/).
+👉🏻 You can find the minting site [here](https://main.d25agxy6l3fx7h.amplifyapp.com/).
 
 
 ## License
