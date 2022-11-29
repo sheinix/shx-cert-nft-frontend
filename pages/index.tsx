@@ -43,17 +43,17 @@ const Home: NextPage = () => {
       <div className="absolute top-0 right-0 h-16 pt-6 pr-6">
         <ConnectButton label="Sign In" accountStatus={{smallScreen: 'avatar',largeScreen: 'full',}}/>
       </div>
-
-      {/* /<div>{isConnected && `Account ${address} is connected`}</div> */}
-      <div>{`is Minter: ${isMinter}`}</div>
-
+    
       { isMinter ? (
         
-        <div className='flex items-center justify-center'>{isConnected && isMinter}
+        <div className='flex items-center justify-center top-0 pt-60'>{isConnected && isMinter}
         <MintingForm />
         </div> 
       ) : (
-        <div>{`Sorry! Account doesn't have Minter Role: ${isMinter}`}</div> 
+        <div className='grid grid-flow-row auto-rows-max justify-center top-0 pt-60'>
+          <p className="font-bold text-xl">{`Sorry! Account doesn't have Minter Role 😿 \n` }</p>
+          <p>Please Connect With an Account with Minter Role </p>
+        </div>
       )}
     </div>
   );
