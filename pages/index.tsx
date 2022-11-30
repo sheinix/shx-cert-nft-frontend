@@ -26,8 +26,7 @@ const Home: NextPage = () => {
     functionName: 'hasRole',
     args: [minterRole, address],
     onSuccess(data) {
-        setIsMinter(data)
-      console.log(`Address has Minter Role? ----> ${data}`)
+        setIsMinter(data as boolean)
     },
     onError(error) {
       console.log('Error', error)
